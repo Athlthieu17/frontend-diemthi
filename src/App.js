@@ -377,7 +377,8 @@ export const App = () => {
         </p>
         Author:{" "}
         <a href="https://www.facebook.com/2uandm.hust/">Đường Minh Quân</a> -
-        <a href="https://www.facebook.com/2uandm.hust/">Lê Trung Hiếu</a>
+        <a href="https://www.facebook.com/HieuAdath.17">Lê Trung Hiếu</a> - 
+        <a href="https://www.facebook.com/KhaiTran.K66HUST/">Trần Quang Khải</a>
       </footer>
     </div>
   );
