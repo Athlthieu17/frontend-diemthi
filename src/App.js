@@ -210,6 +210,7 @@ export const App = () => {
       {!resultKhoi && <p>Không có xếp hạng khối bạn chọn</p>}
       {resultKhoi && (
   <div>
+    
     <h2>Xếp hạng theo khối { khoi.toUpperCase()}</h2>
     
     <Table striped bordered hover style={{ tableLayout: "fixed" }}>
