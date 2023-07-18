@@ -21,7 +21,7 @@ export const App = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://www.viaipi.io.vn:8085/api/v1/score/sbd=${number}`,
+      url: `http://103.70.12.246:8085/api/v1/score/sbd=${number}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -42,7 +42,7 @@ export const App = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://www.viaipi.io.vn:8085/api/v1/khoi/${khoi}/sbd=${number}`,
+      url: `http://103.70.12.246:8085/api/v1/khoi/${khoi}/sbd=${number}`,
       headers: {
         "Content-Type": "application/json",
       },
