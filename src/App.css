@@ -1,17 +1,92 @@
 /* styles.css */
 .table-responsive {
-    overflow-x: auto;
-  }
-  
-  .table th:first-child,
-  .table td:first-child {
-    font-weight: bold;
-    background-color: #f0f0f0; /* Set the background color for the first column (adjust as needed) */
-  }
-  
-  .table th,
-  .table td {
-    text-align: center;
-    white-space: nowrap;
-  }
-  
+  overflow-x: auto;
+}
+
+.table th:first-child,
+.table td:first-child {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  /* Set the background color for the first column (adjust as needed) */
+}
+
+.table th,
+.table td {
+  text-align: center;
+  white-space: nowrap;
+}
+
+div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.result {
+  text-indent: 5%;
+  color: red;
+  font-weight: 500;
+  position: relative;
+  top: 10px;
+  bottom: 20px;
+}
+
+.logo {
+  /* Add your desired styles for the logo */
+  width: 100px;
+  /* Adjust the width as needed */
+  height: 74;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Maintain aspect ratio */
+}
+
+header {
+  height: 150px;
+  position: relative;
+}
+
+footer {
+  height: 70px;
+  position: relative;
+  text-align: center;
+  font-size: large;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+#formId {
+  align-items: center;
+}
+
+#score_button {
+  align-items: center;
+}
+
+#text_ketqua {
+  position: relative;
+  top: 10px;
+  text-align: left;
+  font-size: larger;
+}
+
+#table_ketqua {
+  position: relative;
+  top: 20px;
+}
+
+.rank_khoi {
+  position: relative;
+  top: 20px
+}
+
+#text_header {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: larger;
+}
