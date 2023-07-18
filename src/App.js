@@ -21,7 +21,7 @@ export const App = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://103.70.12.246:8085/api/v1/score/sbd=${number}`,
+      url: `http://localhost:8085/api/v1/score/sbd=${number}`,
       headers: {
         "Content-Type": "application/json",
       },
