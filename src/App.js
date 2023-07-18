@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Table } from "react-bootstrap";
 import axios from "axios";
-import "./App.css"; // Import the CSS file
 
 export const App = () => {
   const [number, setNumber] = useState("");
@@ -18,6 +17,7 @@ export const App = () => {
     { value: "d7", label: "D7" },
     // Add more options here as needed
   ];
+
   const getScore = () => {
     let config = {
       method: "get",
@@ -39,6 +39,7 @@ export const App = () => {
         console.log(error);
       });
   };
+
   const rankKhoi = () => {
     let config = {
       method: "get",
@@ -67,9 +68,11 @@ export const App = () => {
       setResultKhoi(null);
     } else setResult(null);
   };
+
   const checkDiem = (a, b, c) => {
     return a > 1 && b > 1 && c > 1;
   };
+
   const checkValid = () => {
     if (khoi === "a")
       return checkDiem(result.toan, result.vat_li, result.hoa_hoc);
@@ -84,215 +87,89 @@ export const App = () => {
     if (khoi === "d7")
       return checkDiem(result.toan, result.ngoai_ngu, result.hoa_hoc);
   };
+
   const onClickHandlerKhoi = async () => {
     if (checkValid()) {
       await rankKhoi();
     } else setResultKhoi(null);
   };
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
     setKhoi(event.target.value);
   };
+
   const onChangeNumber = (event) => {
     setNumber(event.target.value);
   };
 
   return (
     <div>
-      <header>
-        <img className="logo" src="./viaipi_logo.png" alt="header" />
-        <p id="text_header">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
+      <header style="height: 150px; position: relative;">
+        <img src="./viaipi_logo.png" alt="header" style="width: 100px; height: 74px; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);">
+        <p id="text_header" style="position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%); font-family: 'Roboto'; font-weight: 500; font-size: larger;">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
       </header>
-      <Form>
+      <Form style="width: 90%; margin: 0 auto;">
         <Form.Group controlId="formId">
-          <Form.Label style={{ fontWeight: "bold", marginBottom: "10px" }}>
-            Nhập số báo danh của bạn:
-          </Form.Label>
-          <Form.Control
-            type="text"
-            value={number}
-            onChange={onChangeNumber}
-            style={{ width: "100%", fontSize: "14px" }}
-          />
+          <Form.Label style="font-weight: bold; margin-bottom: 10px;">Nhập số báo danh của bạn:</Form.Label>
+          <Form.Control type="text" value={number} onChange={onChangeNumber} style="width: 100%; font-size: 14px;" />
         </Form.Group>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
-          <Button id="score_button" variant="primary" onClick={onClickHandler}>
-            Submit
-          </Button>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+          <Button id="score_button" variant="primary" onClick={onClickHandler}>Submit</Button>
         </div>
       </Form>
       {result && (
-        <div>
-          <h2 id="text_ketqua">Kết quả thi của SBD : {number}</h2>
-          <Table
-            id="table_ketqua"
-            striped
-            bordered
-            hover
-            style={{ tableLayout: "fixed" }}
-          >
+        <div style="position: relative; top: 20px;">
+          <h2 id="text_ketqua" style="text-align: left; font-size: larger;">Kết quả thi của SBD : {number}</h2>
+          <Table id="table_ketqua" striped bordered hover style="table-layout: fixed;">
             <tbody>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  SBD:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.sbd}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">SBD:</td>
+                <td style="width: 50%; text-align: center;">{result.sbd}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Toán:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.toan}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Toán:</td>
+                <td style="width: 50%; text-align: center;">{result.toan}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Ngữ Văn:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.ngu_van}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Ngữ Văn:</td>
+                <td style="width: 50%; text-align: center;">{result.ngu_van}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Ngoại Ngữ:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.ngoai_ngu}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Ngoại Ngữ:</td>
+                <td style="width: 50%; text-align: center;">{result.ngoai_ngu}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Vật lí:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.vat_li}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Vật lí:</td>
+                <td style="width: 50%; text-align: center;">{result.vat_li}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Hoá học:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.hoa_hoc}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Hoá học:</td>
+                <td style="width: 50%; text-align: center;">{result.hoa_hoc}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Sinh học:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.sinh_hoc}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Sinh học:</td>
+                <td style="width: 50%; text-align: center;">{result.sinh_hoc}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Lịch sử:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.lich_su}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Lịch sử:</td>
+                <td style="width: 50%; text-align: center;">{result.lich_su}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  Địa lí:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.dia_li}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Địa lí:</td>
+                <td style="width: 50%; text-align: center;">{result.dia_li}</td>
               </tr>
               <tr>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    backgroundColor: "#f0f0f0",
-                    width: "50%",
-                  }}
-                >
-                  GDCD:
-                </td>
-                <td style={{ width: "50%", textAlign: "center" }}>
-                  {result.gdcd}
-                </td>
+                <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">GDCD:</td>
+                <td style="width: 50%; text-align: center;">{result.gdcd}</td>
               </tr>
               {/* Add more fields here as needed */}
             </tbody>
           </Table>
-
-          <Form class="rank_khoi">
+          <Form style="position: relative; top: 20px;">
             <Form.Group controlId="formOptions">
-              <Form.Label style={{ fontWeight: "bold", marginBottom: "10px" }}>
-                Xem xếp hạng theo khối:
-              </Form.Label>
-              <Form.Control
-                as="select"
-                value={selectedOption}
-                onChange={handleOptionChange}
-                style={{ width: "100%", fontSize: "14px" }}
-              >
+              <Form.Label style="font-weight: bold; margin-bottom: 10px;">Xem xếp hạng theo khối:</Form.Label>
+              <Form.Control as="select" value={selectedOption} onChange={handleOptionChange} style="width: 100%; font-size: 14px;">
                 <option value="">-- Chọn một khối --</option>
                 {options.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -301,66 +178,27 @@ export const App = () => {
                 ))}
               </Form.Control>
             </Form.Group>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "10px",
-              }}
-            >
-              <Button variant="primary" onClick={onClickHandlerKhoi}>
-                Submit
-              </Button>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+              <Button variant="primary" onClick={onClickHandlerKhoi}>Submit</Button>
             </div>
           </Form>
-          {!resultKhoi && <p class="result">Không có xếp hạng khối bạn chọn</p>}
+          {!resultKhoi && <p class="result" style="text-indent: 5%; color: red; font-weight: 500; position: relative; top: 10px; bottom: 20px;">Không có xếp hạng khối bạn chọn</p>}
           {resultKhoi && (
             <div id="rank_khoi">
               <h2>Xếp hạng theo khối {khoi.toUpperCase()}</h2>
-
-              <Table striped bordered hover style={{ tableLayout: "fixed" }}>
+              <Table striped bordered hover style="table-layout: fixed;">
                 <tbody>
                   <tr>
-                    <td
-                      style={{
-                        fontWeight: "bold",
-                        backgroundColor: "#f0f0f0",
-                        width: "50%",
-                      }}
-                    >
-                      Tổng điểm:
-                    </td>
-                    <td style={{ width: "50%", textAlign: "center" }}>
-                      {resultKhoi.tong_diem}
-                    </td>
+                    <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Tổng điểm:</td>
+                    <td style="width: 50%; text-align: center;">{resultKhoi.tong_diem}</td>
                   </tr>
                   <tr>
-                    <td
-                      style={{
-                        fontWeight: "bold",
-                        backgroundColor: "#f0f0f0",
-                        width: "50%",
-                      }}
-                    >
-                      Xếp hạng toàn quốc:
-                    </td>
-                    <td style={{ width: "50%", textAlign: "center" }}>
-                      {resultKhoi.xep_hang_toan_quoc}
-                    </td>
+                    <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Xếp hạng toàn quốc:</td>
+                    <td style="width: 50%; text-align: center;">{resultKhoi.xep_hang_toan_quoc}</td>
                   </tr>
                   <tr>
-                    <td
-                      style={{
-                        fontWeight: "bold",
-                        backgroundColor: "#f0f0f0",
-                        width: "50%",
-                      }}
-                    >
-                      Xếp hạng tỉnh:
-                    </td>
-                    <td style={{ width: "50%", textAlign: "center" }}>
-                      {resultKhoi.xep_hang_tinh}
-                    </td>
+                    <td style="font-weight: bold; background-color: #f0f0f0; width: 50%;">Xếp hạng tỉnh:</td>
+                    <td style="width: 50%; text-align: center;">{resultKhoi.xep_hang_tinh}</td>
                   </tr>
                   {/* Add more fields here as needed */}
                 </tbody>
@@ -370,18 +208,11 @@ export const App = () => {
         </div>
       )}
 
-      {!result && <p class="result">Hãy nhập đúng số báo danh</p>}
-      <footer>
-        <p>
-          Copyright by VIAIPI 2023 - Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo
-        </p>
-        Author:{" "}
-        <a href="https://www.facebook.com/2uandm.hust/">Đường Minh Quân</a> -
-        <a href="https://www.facebook.com/HieuAdath.17">Lê Trung Hiếu</a> - 
-        <a href="https://www.facebook.com/KhaiTran.K66HUST/">Trần Quang Khải</a>
+      {!result && <p class="result" style="text-indent: 5%; color: red; font-weight: 500; position: relative; top: 10px; bottom: 20px;">Hãy nhập đúng số báo danh</p>}
+      <footer style="height: 70px; position: relative; text-align: center; font-size: large; font-family: 'Roboto'; font-weight: 500;">
+        <p>Copyright by VIAIPI 2023 - Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo</p>
+        Author: <a href="https://www.facebook.com/2uandm.hust/">Đường Minh Quân</a> - <a href="https://www.facebook.com/HieuAdath.17">Lê Trung Hiếu</a> - <a href="https://www.facebook.com/KhaiTran.K66HUST/">Trần Quang Khải</a>
       </footer>
     </div>
   );
 };
-
-// export default App;
