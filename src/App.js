@@ -105,10 +105,34 @@ export const App = () => {
 
   return (
     <div>
-      <header style="height: 150px; position: relative;">
-        <img src="./viaipi_logo.png" alt="header" style="width: 100px; height: 74px; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);"/>
-        <p id="text_header" style="position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%); font-family: 'Roboto'; font-weight: 500; font-size: larger;">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
-      </header>
+    <header>
+    <img
+      src="./viaipi_logo.png"
+      alt="header"
+      style={{
+        width: "100px",
+        height: "74px",
+        position: "absolute",
+        top: "30%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    />
+    <p
+      id="text_header"
+      style={{
+        position: "absolute",
+        top: "65%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        fontFamily: "Roboto",
+        fontWeight: "500",
+        fontSize: "larger",
+      }}
+    >
+      Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023
+    </p>
+  </header>
       <Form style="width: 90%; margin: 0 auto;">
         <Form.Group controlId="formId">
           <Form.Label style="font-weight: bold; margin-bottom: 10px;">Nhập số báo danh của bạn:</Form.Label>
