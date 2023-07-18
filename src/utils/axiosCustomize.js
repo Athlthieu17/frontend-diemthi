@@ -7,7 +7,7 @@ NProgress.configure({
 });
 
 const instance = axios.create({
-    baseURL: 'http://103.70.12.246:8085/',
+    baseURL: 'http://localhost:8085/',
 
 });
 // Add a request interceptor
