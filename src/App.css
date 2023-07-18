@@ -1,0 +1,17 @@
+/* styles.css */
+.table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table th:first-child,
+  .table td:first-child {
+    font-weight: bold;
+    background-color: #f0f0f0; /* Set the background color for the first column (adjust as needed) */
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+    white-space: nowrap;
+  }
+  
