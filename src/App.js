@@ -515,7 +515,7 @@ export const App = () => {
                         width: "50%",
                       }}
                     >
-                      Tỉnh:
+                      Tỉnh/TP:
                     </td>
                     <td style={{ width: "50%", textAlign: "center" }}>
                       {resultKhoi.xep_hang_tinh}
