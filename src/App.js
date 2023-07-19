@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Table, Spinner } from "react-bootstrap";
 import axios from "axios";
 import "./App.css"; // Import the CSS file
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 export const App = () => {
   const [number, setNumber] = useState("");
@@ -198,16 +198,16 @@ export const App = () => {
         <img className="logo" src="./viaipi_logo.png" alt="header" />
         <p id="text_header">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
       </header>
-      {/* <div id="container_compare">
+      <div id="container_compare">
         <a
           id="compare_score"
-          href="https://drive.google.com/drive/folders/14xcXNzwQ5cOxE8who1HfPaMW_TsEyHi_?usp=sharing"
+          href="https://drive.google.com/drive/folders/1JD21Bxtk5wG4hysbGuYRUtO-qFyVfGbV?usp=sharing"
           target="_blank"
           rel="noreferrer"
         >
           So sánh điểm từng khối của từng tỉnh và cả nước
         </a>
-      </div> */}
+      </div>
       <Form class="enter_sbd">
         <Form.Group controlId="formId">
           <Form.Label
@@ -262,7 +262,7 @@ export const App = () => {
       {result && (
         <div>
           <h2 id="text_ketqua">
-            Kết quả thi của SBD : {number} <br></br> Sở GDĐT Tỉnh{" "}
+            Kết quả thi của SBD : {number} <br></br> Sở GDĐT{" "}
             {checkProvince(number.toString())}
           </h2>
           <Table
