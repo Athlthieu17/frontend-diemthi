@@ -22,7 +22,7 @@ export const App = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://103.70.12.246:8085/api/v1/score/sbd=${number}`,
+      url: `https://api.viaipi.io.vn/api/v1/score/sbd=${number}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,6 +31,7 @@ export const App = () => {
     axios
       .request(config)
       .then((response) => {
+        console.log(response.valid);
         setResult(response.data.data);
         console.log(response.data.data);
       })
@@ -43,7 +44,7 @@ export const App = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://103.70.12.246:8085/api/v1/khoi/${khoi}/sbd=${number}`,
+      url: `https://api.viaipi.io.vn/api/v1/khoi/${khoi}/sbd=${number}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -103,7 +104,7 @@ export const App = () => {
         <img className="logo" src="./viaipi_logo.png" alt="header" />
         <p id="text_header">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
       </header>
-      <Form>
+      <Form class="enter_sbd">
         <Form.Group controlId="formId">
           <Form.Label style={{ fontWeight: "bold", marginBottom: "10px" }}>
             Nhập số báo danh của bạn:
@@ -284,7 +285,13 @@ export const App = () => {
 
           <Form class="rank_khoi">
             <Form.Group controlId="formOptions">
-              <Form.Label style={{ fontWeight: "bold", marginBottom: "10px" }}>
+              <Form.Label
+                style={{
+                  fontWeight: "bold",
+                  marginBottom: "10px",
+                  marginTop: "20px",
+                }}
+              >
                 Xem xếp hạng theo khối:
               </Form.Label>
               <Form.Control
@@ -373,11 +380,31 @@ export const App = () => {
       {!result && <p class="result">Hãy nhập đúng số báo danh</p>}
       <footer>
         <p>
-          Copyright by VIAIPI 2023 - Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo
+          Copyright by VIAIPI<sup>&copy;</sup> 2023
         </p>
-        Author:{" "}
-        <a href="https://www.facebook.com/2uandm.hust/">Đường Minh Quân</a> -
-        <a href="https://www.facebook.com/2uandm.hust/">Lê Trung Hiếu</a>
+        <p>Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo</p>
+        <p>
+          Author{" "}
+          <span style={{ display: "inline-block", marginLeft: "5px" }}>
+            <ul style={{ listStyleType: "none", padding: "0", margin: "0" }}>
+              <li style={{ display: "inline-block" }}>
+                <a href="https://www.facebook.com/2uandm.hust/">
+                  Đường Minh Quân
+                </a>
+              </li>
+              <li style={{ display: "inline-block", margin: "0 5px" }}>
+                <a href="https://www.facebook.com/2uandm.hust/">
+                  Lê Trung Hiếu
+                </a>
+              </li>
+              <li style={{ display: "inline-block" }}>
+                <a href="https://www.facebook.com/2uandm.hust/">
+                  Trần Quang Khải
+                </a>
+              </li>
+            </ul>
+          </span>
+        </p>
       </footer>
     </div>
   );
