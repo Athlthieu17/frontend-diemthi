@@ -375,10 +375,6 @@ export const App = () => {
         <p>
           Copyright by VIAIPI 2023 - Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo
         </p>
-        Author:{" "}
-        <a href="https://www.facebook.com/2uandm.hust/">Đường Minh Quân</a> -
-        <a href="https://www.facebook.com/HieuAdath.17">Lê Trung Hiếu</a> - 
-        <a href="https://www.facebook.com/KhaiTran.K66HUST/">Trần Quang Khải</a>
       </footer>
     </div>
   );
