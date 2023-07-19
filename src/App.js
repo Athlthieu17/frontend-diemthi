@@ -99,6 +99,7 @@ export const App = () => {
   const onClickHandlerKhoi = async () => {
     if (checkValid()) {
       await rankKhoi();
+      setErrorRank(null);
     } else {
       setErrorRank("Không có khổi xếp hạng bạn chọn");
       setResultKhoi(null);
