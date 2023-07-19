@@ -14,12 +14,17 @@ export const App = () => {
   const [error, setError] = useState(null); // New state for handling errors
   const [errorRank, setErrorRank] = useState(null); // New state for handling errors
   const options = [
-    { value: "a", label: "A" },
-    { value: "b", label: "B" },
-    { value: "c", label: "C" },
-    { value: "d", label: "D" },
-    { value: "a1", label: "A1" },
-    { value: "d7", label: "D7" },
+    { value: "a", label: "A00" },
+    { value: "a1", label: "A01" },
+    { value: "b", label: "B00" },
+    { value: "c", label: "C00" },
+    { value: "d", label: "D01" },
+    { value: "d2", label: "D02" },
+    { value: "d3", label: "D03" },
+    { value: "d4", label: "D04" },
+    { value: "d5", label: "D05" },
+    { value: "d6", label: "D06" },
+    { value: "d7", label: "D07" },
     // Add more options here as needed
   ];
 
@@ -223,9 +228,7 @@ export const App = () => {
           So sánh điểm từng khối của từng tỉnh và cả nước
         </a>
       </div>
-      <h3 id="noti" style={{ color: "red" }}>
-        Bọn mình đang hoàn thiện chức năng website, bạn hãy quay lại sau nhé ^^
-      </h3>
+      
       <Form class="enter_sbd">
         <Form.Group controlId="formId">
           <Form.Label
