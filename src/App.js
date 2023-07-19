@@ -452,12 +452,12 @@ export const App = () => {
                 </a>
               </li>
               <li style={{ display: "inline-block", margin: "0 5px" }}>
-                <a class="info" href="https://www.facebook.com/2uandm.hust/">
+                <a class="info" href="https://www.facebook.com/HieuAdath.17">
                   Lê Trung Hiếu |
                 </a>
               </li>
               <li style={{ display: "inline-block" }}>
-                <a class="info" href="https://www.facebook.com/2uandm.hust/">
+                <a class="info" href="https://www.facebook.com/KhaiTran.K66HUST/">
                   Trần Quang Khải
                 </a>
               </li>
