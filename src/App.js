@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Table, Spinner } from "react-bootstrap";
 import axios from "axios";
 import "./App.css"; // Import the CSS file
+import { Analytics } from '@vercel/analytics/react';
 
 export const App = () => {
   const [number, setNumber] = useState("");
@@ -465,6 +466,7 @@ export const App = () => {
           </span>
         </p>
       </footer>
+      <Analytics />
     </div>
   );
 };
