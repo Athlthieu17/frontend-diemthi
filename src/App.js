@@ -22,6 +22,83 @@ export const App = () => {
     { value: "d7", label: "D7" },
     // Add more options here as needed
   ];
+
+  const provinceCodes = {
+    1: "Hà Nội",
+    2: "TP. Hồ Chí Minh",
+    3: "Hải Phòng",
+    4: "Đà Nẵng",
+    5: "Hà Giang",
+    6: "Cao Bằng",
+    7: "Lai Châu",
+    8: "Lào Cai",
+    9: "Tuyên Quang",
+    10: "Lạng Sơn",
+    11: "Bắc Kạn",
+    12: "Thái Nguyên",
+    13: "Yên Bái",
+    14: "Sơn La",
+    15: "Phú Thọ",
+    16: "Vĩnh Phúc",
+    17: "Quảng Ninh",
+    18: "Bắc Giang",
+    19: "Bắc Ninh",
+    21: "Hải Dương",
+    22: "Hưng Yên",
+    23: "Hoà Bình",
+    24: "Hà Nam",
+    25: "Nam Định",
+    26: "Thái Bình",
+    27: "Ninh Bình",
+    28: "Thanh Hoá",
+    29: "Nghệ An",
+    30: "Hà Tĩnh",
+    31: "Quảng Bình",
+    32: "Quảng Trị",
+    33: "Thừa Thiên Huế",
+    34: "Quảng Nam",
+    35: "Quảng Ngãi",
+    36: "Kon Tum",
+    37: "Bình Định",
+    38: "Gia Lai",
+    39: "Phú Yên",
+    40: "Đắk Lắk",
+    41: "Khánh Hoà",
+    42: "Lâm Đồng",
+    43: "Bình Phước",
+    44: "Bình Dương",
+    45: "Ninh Thuận",
+    46: "Tây Ninh",
+    47: "Bình Thuận",
+    48: "Đồng Nai",
+    49: "Long An",
+    50: "Đồng Tháp",
+    51: "An Giang",
+    52: "Bà Rịa-Vũng Tàu",
+    53: "Tiền Giang",
+    54: "Kiên Giang",
+    55: "Cần Thơ",
+    56: "Bến Tre",
+    57: "Vĩnh Long",
+    58: "Trà Vinh",
+    59: "Sóc Trăng",
+    60: "Bạc Liêu",
+    61: "Cà Mau",
+    62: "Điện Biên",
+    64: "Hậu Giang",
+  };
+
+  function checkProvince(sbd) {
+    // Make sure sbd is a string
+    let sbd_trim = sbd.toString().trim();
+    if (sbd_trim.length === 7) {
+      sbd_trim = "0" + sbd_trim;
+    }
+    // Extract the first two characters (province code)
+    const code = sbd_trim.substring(0, 2);
+    return provinceCodes[parseInt(code)];
+  }
+
   const getScore = async () => {
     setLoading(true); // Show the spinner when the API call starts
     setResult(null);
@@ -121,20 +198,26 @@ export const App = () => {
         <img className="logo" src="./viaipi_logo.png" alt="header" />
         <p id="text_header">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
       </header>
-      <div id="container_compare">
+      {/* <div id="container_compare">
         <a
           id="compare_score"
-          href="https://drive.google.com/drive/folders/1--LGMfac8yr72TNtniwnfwuNJRoyUkDF"
+          href="https://drive.google.com/drive/folders/14xcXNzwQ5cOxE8who1HfPaMW_TsEyHi_?usp=sharing"
           target="_blank"
           rel="noreferrer"
         >
           So sánh điểm từng khối của từng tỉnh và cả nước
         </a>
-      </div>
+      </div> */}
       <Form class="enter_sbd">
         <Form.Group controlId="formId">
-          <Form.Label style={{ fontWeight: "bold", marginBottom: "10px" }}>
-            Nhập số báo danh của bạn:
+          <Form.Label
+            style={{
+              fontWeight: "bold",
+              marginBottom: "10px",
+              marginTop: "15px",
+            }}
+          >
+            Nhập số báo danh của bạn
           </Form.Label>
           <Form.Control
             type="text"
@@ -150,7 +233,14 @@ export const App = () => {
             marginTop: "10px",
           }}
         >
-          <Button id="score_button" variant="primary" onClick={onClickHandler}>
+          <Button
+            id="score_button"
+            variant="primary"
+            onClick={onClickHandler}
+            style={{
+              marginTop: "10px",
+            }}
+          >
             Submit
           </Button>
           {loading && (
@@ -171,7 +261,10 @@ export const App = () => {
       </Form>
       {result && (
         <div>
-          <h2 id="text_ketqua">Kết quả thi của SBD : {number}</h2>
+          <h2 id="text_ketqua">
+            Kết quả thi của SBD : {number} <br></br> Sở GDĐT Tỉnh{" "}
+            {checkProvince(number.toString())}
+          </h2>
           <Table
             id="table_ketqua"
             striped
@@ -443,23 +536,27 @@ export const App = () => {
         <p>
           Copyright by VIAIPI<sup>&copy;</sup> 2023
         </p>
-        <p>Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo</p>
+        <p>Bản quyền thuộc Bộ Giáo Dục và Đào Tạo</p>
         <p>
+          Tác giả:
           <span style={{ display: "inline-block", marginLeft: "5px" }}>
             <ul style={{ listStyleType: "none", padding: "0", margin: "0" }}>
               <li style={{ display: "inline-block" }}>
                 <a class="info" href="https://www.facebook.com/2uandm.hust/">
-                  Đường Minh Quân |
+                  Đường Quân |
                 </a>
               </li>
               <li style={{ display: "inline-block", margin: "0 5px" }}>
                 <a class="info" href="https://www.facebook.com/HieuAdath.17">
-                  Lê Trung Hiếu |
+                  Hiếu Lê |
                 </a>
               </li>
               <li style={{ display: "inline-block" }}>
-                <a class="info" href="https://www.facebook.com/KhaiTran.K66HUST/">
-                  Trần Quang Khải
+                <a
+                  class="info"
+                  href="https://www.facebook.com/KhaiTran.K66HUST"
+                >
+                  Khải Trần
                 </a>
               </li>
             </ul>
