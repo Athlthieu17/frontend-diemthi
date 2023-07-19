@@ -23,6 +23,7 @@ export const App = () => {
   ];
   const getScore = async () => {
     setLoading(true); // Show the spinner when the API call starts
+    setResult(null);
     let config = {
       method: "get",
       maxBodyLength: Infinity,
