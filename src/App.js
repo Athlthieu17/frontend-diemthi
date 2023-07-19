@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Table } from "react-bootstrap";
+import { Form, Button, Table, Spinner } from "react-bootstrap";
 import axios from "axios";
 import "./App.css"; // Import the CSS file
 
@@ -9,6 +9,9 @@ export const App = () => {
   const [resultKhoi, setResultKhoi] = useState(null);
   const [khoi, setKhoi] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // New state for handling errors
+  const [errorRank, setErrorRank] = useState(null); // New state for handling errors
   const options = [
     { value: "a", label: "A" },
     { value: "b", label: "B" },
@@ -18,7 +21,8 @@ export const App = () => {
     { value: "d7", label: "D7" },
     // Add more options here as needed
   ];
-  const getScore = () => {
+  const getScore = async () => {
+    setLoading(true); // Show the spinner when the API call starts
     let config = {
       method: "get",
       maxBodyLength: Infinity,
@@ -28,19 +32,21 @@ export const App = () => {
       },
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        console.log(response.valid);
-        setResult(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch((error) => {
-        setResult(null); // Clear the result in case of an error
-        console.log(error);
-      });
+    try {
+      const response = await axios.request(config);
+      setResult(response.data.data);
+      console.log(response.data.data);
+      setError(null);
+    } catch (error) {
+      setError("Số báo danh không tồn tại");
+      setResultKhoi(null); // Clear the result in case of an error
+    } finally {
+      // Set loading back to false after the response is received (success or error)
+      setLoading(false);
+    }
   };
-  const rankKhoi = () => {
+  const rankKhoi = async () => {
+    setLoading(true); // Show the spinner when the API call starts
     let config = {
       method: "get",
       maxBodyLength: Infinity,
@@ -50,23 +56,28 @@ export const App = () => {
       },
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        setResultKhoi(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch((error) => {
-        setResultKhoi(null); // Clear the result in case of an error
-        console.log(error);
-      });
+    try {
+      const response = await axios.request(config);
+      setResultKhoi(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      setResultKhoi(null); // Clear the result in case of an error
+      console.log(error);
+    } finally {
+      // Set loading back to false after the response is received (success or error)
+      setLoading(false);
+      setError(null);
+    }
   };
 
   const onClickHandler = async () => {
     if (number.length >= 7 && number.length <= 8) {
       await getScore();
       setResultKhoi(null);
-    } else setResult(null);
+    } else {
+      setError("Hãy nhập một số báo danh hợp lệ");
+      setResult(null);
+    }
   };
   const checkDiem = (a, b, c) => {
     return a > 1 && b > 1 && c > 1;
@@ -88,7 +99,10 @@ export const App = () => {
   const onClickHandlerKhoi = async () => {
     if (checkValid()) {
       await rankKhoi();
-    } else setResultKhoi(null);
+    } else {
+      setErrorRank("Không có khổi xếp hạng bạn chọn");
+      setResultKhoi(null);
+    }
   };
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -104,6 +118,14 @@ export const App = () => {
         <img className="logo" src="./viaipi_logo.png" alt="header" />
         <p id="text_header">Tra cứu thứ hạng điểm thi THPT Quốc Gia 2023</p>
       </header>
+      <div id="container_compare">
+        <a
+          id="compare_score"
+          href="https://drive.google.com/drive/folders/1--LGMfac8yr72TNtniwnfwuNJRoyUkDF"
+        >
+          So sánh điểm từng khối của từng tỉnh và cả nước
+        </a>
+      </div>
       <Form class="enter_sbd">
         <Form.Group controlId="formId">
           <Form.Label style={{ fontWeight: "bold", marginBottom: "10px" }}>
@@ -126,6 +148,20 @@ export const App = () => {
           <Button id="score_button" variant="primary" onClick={onClickHandler}>
             Submit
           </Button>
+          {loading && (
+            <Spinner
+              animation="border"
+              role="status"
+              style={{
+                position: "absolute",
+                marginTop: "6px",
+                marginLeft: "120px",
+                width: "1.5rem",
+                height: "1.5rem",
+                color: "black",
+              }}
+            />
+          )}
         </div>
       </Form>
       {result && (
@@ -315,15 +351,34 @@ export const App = () => {
                 marginTop: "10px",
               }}
             >
-              <Button variant="primary" onClick={onClickHandlerKhoi}>
+              <Button
+                id="score_button_khoi"
+                variant="primary"
+                onClick={onClickHandlerKhoi}
+              >
                 Submit
               </Button>
+              {loading && (
+                <Spinner
+                  animation="border"
+                  role="status"
+                  style={{
+                    position: "absolute",
+                    marginTop: "6px",
+                    marginLeft: "120px",
+                    width: "1.5rem",
+                    height: "1.5rem",
+                    color: "black",
+                  }}
+                />
+              )}
             </div>
           </Form>
-          {!resultKhoi && <p class="result">Không có xếp hạng khối bạn chọn</p>}
+          {errorRank && <p class="result">{errorRank}</p>}
+
           {resultKhoi && (
             <div id="rank_khoi">
-              <h2>Xếp hạng theo khối {khoi.toUpperCase()}</h2>
+              <h3>Xếp hạng theo khối {khoi.toUpperCase()}</h3>
 
               <Table striped bordered hover style={{ tableLayout: "fixed" }}>
                 <tbody>
@@ -349,7 +404,7 @@ export const App = () => {
                         width: "50%",
                       }}
                     >
-                      Xếp hạng toàn quốc:
+                      Toàn quốc:
                     </td>
                     <td style={{ width: "50%", textAlign: "center" }}>
                       {resultKhoi.xep_hang_toan_quoc}
@@ -363,7 +418,7 @@ export const App = () => {
                         width: "50%",
                       }}
                     >
-                      Xếp hạng tỉnh:
+                      Tỉnh:
                     </td>
                     <td style={{ width: "50%", textAlign: "center" }}>
                       {resultKhoi.xep_hang_tinh}
@@ -376,29 +431,29 @@ export const App = () => {
           )}
         </div>
       )}
-
-      {!result && <p class="result">Hãy nhập đúng số báo danh</p>}
+      {error && <p class="result">{error}</p>}
+      {/* {!result && <p class="result">Hãy nhập đúng số báo danh</p>} */}
+      <br></br>
       <footer>
         <p>
           Copyright by VIAIPI<sup>&copy;</sup> 2023
         </p>
         <p>Bản quyền thuộc về Bộ Giáo Dục và Đào Tạo</p>
         <p>
-          Author{" "}
           <span style={{ display: "inline-block", marginLeft: "5px" }}>
             <ul style={{ listStyleType: "none", padding: "0", margin: "0" }}>
               <li style={{ display: "inline-block" }}>
-                <a href="https://www.facebook.com/2uandm.hust/">
-                  Đường Minh Quân
+                <a class="info" href="https://www.facebook.com/2uandm.hust/">
+                  Đường Minh Quân |
                 </a>
               </li>
               <li style={{ display: "inline-block", margin: "0 5px" }}>
-                <a href="https://www.facebook.com/2uandm.hust/">
-                  Lê Trung Hiếu
+                <a class="info" href="https://www.facebook.com/2uandm.hust/">
+                  Lê Trung Hiếu |
                 </a>
               </li>
               <li style={{ display: "inline-block" }}>
-                <a href="https://www.facebook.com/2uandm.hust/">
+                <a class="info" href="https://www.facebook.com/2uandm.hust/">
                   Trần Quang Khải
                 </a>
               </li>
