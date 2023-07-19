@@ -123,6 +123,8 @@ export const App = () => {
         <a
           id="compare_score"
           href="https://drive.google.com/drive/folders/1--LGMfac8yr72TNtniwnfwuNJRoyUkDF"
+          target="_blank"
+          rel="noreferrer"
         >
           So sánh điểm từng khối của từng tỉnh và cả nước
         </a>
