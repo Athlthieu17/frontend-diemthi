@@ -88,6 +88,21 @@ export const App = () => {
     64: "Hậu Giang",
   };
 
+  function checkArea(sbd) {
+    // Make sure sbd is a string
+    let sbd_trim = sbd.toString().trim();
+    if (sbd_trim.length === 7) {
+      sbd_trim = "0" + sbd_trim;
+    }
+    // Extract the first two characters (province code)
+    const code = parseInt(sbd_trim.substring(0, 2));
+    if (code === 1 || (code > 2 && code <= 31)) {
+      return "Bắc";
+    } else {
+      return "Nam";
+    }
+  }
+
   function checkProvince(sbd) {
     // Make sure sbd is a string
     let sbd_trim = sbd.toString().trim();
@@ -208,9 +223,9 @@ export const App = () => {
           So sánh điểm từng khối của từng tỉnh và cả nước
         </a>
       </div>
-      <h3 id="noti" style={{ color: "red" }}>
+      {/* <h3 id="noti" style={{ color: "red" }}>
         Bọn mình đang hoàn thiện chức năng website, bạn hãy quay lại sau nhé ^^
-      </h3>
+      </h3> */}
       <Form class="enter_sbd">
         <Form.Group controlId="formId">
           <Form.Label
@@ -252,7 +267,7 @@ export const App = () => {
               role="status"
               style={{
                 position: "absolute",
-                marginTop: "6px",
+                marginTop: "17px",
                 marginLeft: "120px",
                 width: "1.5rem",
                 height: "1.5rem",
@@ -476,10 +491,10 @@ export const App = () => {
             </div>
           </Form>
           {errorRank && <p class="result">{errorRank}</p>}
-
+          <br></br>
           {resultKhoi && (
             <div id="rank_khoi">
-              <h3>Xếp hạng theo khối {khoi.toUpperCase()}</h3>
+              <h4>Xếp hạng theo khối {khoi.toUpperCase()}</h4>
 
               <Table striped bordered hover style={{ tableLayout: "fixed" }}>
                 <tbody>
@@ -523,6 +538,20 @@ export const App = () => {
                     </td>
                     <td style={{ width: "50%", textAlign: "center" }}>
                       {resultKhoi.xep_hang_tinh}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      style={{
+                        fontWeight: "bold",
+                        backgroundColor: "#f0f0f0",
+                        width: "50%",
+                      }}
+                    >
+                      Miền {checkArea(number.toString())}:
+                    </td>
+                    <td style={{ width: "50%", textAlign: "center" }}>
+                      {resultKhoi.xep_hang_mien}
                     </td>
                   </tr>
                   {/* Add more fields here as needed */}
