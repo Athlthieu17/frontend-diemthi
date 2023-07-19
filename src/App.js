@@ -208,6 +208,9 @@ export const App = () => {
           So sánh điểm từng khối của từng tỉnh và cả nước
         </a>
       </div>
+      <h3 id="noti" style={{ color: "red" }}>
+        Bọn mình đang hoàn thiện chức năng website, bạn hãy quay lại sau nhé ^^
+      </h3>
       <Form class="enter_sbd">
         <Form.Group controlId="formId">
           <Form.Label
